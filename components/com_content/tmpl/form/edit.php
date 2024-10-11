@@ -100,7 +100,8 @@ if (!$params->exists('show_publishing_options')) {
 
             <?php echo LayoutHelper::render('joomla.edit.params', $this); ?>
 
-            <?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'publishing', Text::_('COM_CONTENT_PUBLISHING')); ?>
+            <?php if ($params->get('show_publishing_options', 1) == 1) : ?>
+                <?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'publishing', Text::_('COM_CONTENT_PUBLISHING')); ?>
 
                 <?php echo $this->form->renderField('transition'); ?>
                 <?php echo $this->form->renderField('state'); ?>
@@ -133,6 +134,7 @@ if (!$params->exists('show_publishing_options')) {
                     </div>
                 <?php endif; ?>
             <?php echo HTMLHelper::_('uitab.endTab'); ?>
+            <?php endif; ?>
 
             <?php if (Multilanguage::isEnabled()) : ?>
                 <?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'language', Text::_('JFIELD_LANGUAGE_LABEL')); ?>
@@ -142,12 +144,10 @@ if (!$params->exists('show_publishing_options')) {
                 <?php echo $this->form->renderField('language'); ?>
             <?php endif; ?>
 
-            <?php if ($params->get('show_publishing_options', 1) == 1) : ?>
                 <?php echo HTMLHelper::_('uitab.addTab', $this->tab_name, 'metadata', Text::_('COM_CONTENT_METADATA')); ?>
                     <?php echo $this->form->renderField('metadesc'); ?>
                     <?php echo $this->form->renderField('metakey'); ?>
                 <?php echo HTMLHelper::_('uitab.endTab'); ?>
-            <?php endif; ?>
 
             <?php echo HTMLHelper::_('uitab.endTabSet'); ?>
 
